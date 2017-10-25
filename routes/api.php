@@ -16,3 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
+DingoRoute::version('v1', function() {
+    DingoRoute::group(['namespace' => 'CodeFlix\Http\Controllers\Api', 'as' => 'api'], function(){
+
+        DingoRoute::post('/login', 'AuthController@authenticate');
+
+    });
+});
