@@ -21,6 +21,8 @@ class AuthController extends Controller
 
             return $this->sendLoginResponse($request, $token);
         }
+
+
         return $this->sendFailedLoginResponse($request);
     }
 
@@ -49,4 +51,6 @@ class AuthController extends Controller
             'error' => \Lang::get('auth.failed')
         ],400);
     }
+
+
 }

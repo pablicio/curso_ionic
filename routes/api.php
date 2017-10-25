@@ -1,7 +1,4 @@
 <?php
-
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,13 +14,40 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-RouteDingo::version('v1', function() {
-    RouteDingo::group(['namespace' => 'App\Http\Controllers\Api', 'as' => 'api'], function(){
+RouteDingo::version('v1', function () {
+    RouteDingo::group(['namespace' => 'App\Http\Controllers\Api', 'as' => 'api'], function () {
 
-//        RouteDingo::post('/login', 'AuthController@authenticate');
+        //POSSO ENVIAR ATÉ 10 REQUISIÇÕES POR MINUTO PARA ESTE MIDDLEWARE
+        RouteDingo::post('/acess_token', [
+            'uses' => 'AuthController@acessToken',
+            'middleware' => 'api.throttle',
+            'limit' => 10,
+            'expires' => 1
+        ])->name('.acess_token');
 
-        RouteDingo::post('/acess_token', 'AuthController@acessToken')
-        ->name('.acess_token');
+        //POSSO DAR REFRESH NO MEU TOKEN
+        RouteDingo::post('/refresh_token', [
+            'uses' => 'AuthController@refreshToken',
+            'middleware' => 'api.throttle',
+            'limit' => 10,
+            'expires' => 1
+        ])->name('.refresh_tokenrefresh_token');
+
+        RouteDingo::group([
+            'middleware' => ['api.throttle', 'api.auth'],
+            'limit' => 100,
+            'expires' => 3
+        ],
+            function () {
+
+            RouteDingo::post('/logout','AuthController@logout');
+
+                RouteDingo::get('/teste', function(){
+                    return 'oi estou logado';
+                });
+            });
+
+
     });
 });
 

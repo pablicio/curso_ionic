@@ -195,10 +195,11 @@ return [
     | on every request.
     |
     | Set grace period in seconds to prevent parallel request failure.
+    | LImita tempo que o token pode ficar fora da lista negra até ser substituído
     |
     */
 
-    'blacklist_grace_period' => env('JWT_BLACKLIST_GRACE_PERIOD', 0),
+    'blacklist_grace_period' => env('JWT_BLACKLIST_GRACE_PERIOD', 15),
 
     /*
     |--------------------------------------------------------------------------

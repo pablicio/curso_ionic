@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.36 on 2017-10-24.
+ * Generated for Laravel 5.4.36 on 2017-10-25.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -13343,169 +13343,326 @@ namespace Tymon\JWTAuth\Facades {
     class JWTAuth {
         
         /**
-         * Find a user using the user identifier in the subject claim.
-         *
-         * @param bool|string $token
-         * @return mixed 
-         * @static 
-         */ 
-        public static function toUser($token = false)
-        {
-            return \Tymon\JWTAuth\JWTAuth::toUser($token);
-        }
-        
-        /**
-         * Generate a token using the user identifier as the subject claim.
-         *
-         * @param mixed $user
-         * @param array $customClaims
-         * @return string 
-         * @static 
-         */ 
-        public static function fromUser($user, $customClaims = array())
-        {
-            return \Tymon\JWTAuth\JWTAuth::fromUser($user, $customClaims);
-        }
-        
-        /**
          * Attempt to authenticate the user and return the token.
          *
          * @param array $credentials
-         * @param array $customClaims
          * @return false|string 
          * @static 
          */ 
-        public static function attempt($credentials = array(), $customClaims = array())
+        public static function attempt($credentials)
         {
-            return \Tymon\JWTAuth\JWTAuth::attempt($credentials, $customClaims);
+            return \Tymon\JWTAuth\JWTAuth::attempt($credentials);
         }
         
         /**
          * Authenticate a user via a token.
          *
-         * @param mixed $token
-         * @return mixed 
+         * @return \Tymon\JWTAuth\Contracts\JWTSubject|false 
          * @static 
          */ 
-        public static function authenticate($token = false)
+        public static function authenticate()
         {
-            return \Tymon\JWTAuth\JWTAuth::authenticate($token);
+            return \Tymon\JWTAuth\JWTAuth::authenticate();
+        }
+        
+        /**
+         * Alias for authenticate().
+         *
+         * @return \Tymon\JWTAuth\Contracts\JWTSubject|false 
+         * @static 
+         */ 
+        public static function toUser()
+        {
+            return \Tymon\JWTAuth\JWTAuth::toUser();
+        }
+        
+        /**
+         * Get the authenticated user.
+         *
+         * @return \Tymon\JWTAuth\Contracts\JWTSubject 
+         * @static 
+         */ 
+        public static function user()
+        {
+            return \Tymon\JWTAuth\JWTAuth::user();
+        }
+        
+        /**
+         * Generate a token for a given subject.
+         *
+         * @param \Tymon\JWTAuth\Contracts\JWTSubject $subject
+         * @return string 
+         * @static 
+         */ 
+        public static function fromSubject($subject)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::fromSubject($subject);
+        }
+        
+        /**
+         * Alias to generate a token for a given user.
+         *
+         * @param \Tymon\JWTAuth\Contracts\JWTSubject $user
+         * @return string 
+         * @static 
+         */ 
+        public static function fromUser($user)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::fromUser($user);
         }
         
         /**
          * Refresh an expired token.
          *
-         * @param mixed $token
+         * @param bool $forceForever
+         * @param bool $resetClaims
          * @return string 
          * @static 
          */ 
-        public static function refresh($token = false)
+        public static function refresh($forceForever = false, $resetClaims = false)
         {
-            return \Tymon\JWTAuth\JWTAuth::refresh($token);
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::refresh($forceForever, $resetClaims);
         }
         
         /**
          * Invalidate a token (add it to the blacklist).
          *
-         * @param mixed $token
+         * @param bool $forceForever
+         * @return $this 
+         * @static 
+         */ 
+        public static function invalidate($forceForever = false)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::invalidate($forceForever);
+        }
+        
+        /**
+         * Alias to get the payload, and as a result checks that
+         * the token is valid i.e. not expired or blacklisted.
+         *
+         * @throws \Tymon\JWTAuth\Exceptions\JWTException
+         * @return \Tymon\JWTAuth\Payload 
+         * @static 
+         */ 
+        public static function checkOrFail()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::checkOrFail();
+        }
+        
+        /**
+         * Check that the token is valid.
+         *
          * @return bool 
          * @static 
          */ 
-        public static function invalidate($token = false)
+        public static function check()
         {
-            return \Tymon\JWTAuth\JWTAuth::invalidate($token);
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::check();
         }
         
         /**
          * Get the token.
          *
-         * @return bool|string 
+         * @return \Tymon\JWTAuth\Token|false 
          * @static 
          */ 
         public static function getToken()
         {
+            //Method inherited from \Tymon\JWTAuth\JWT            
             return \Tymon\JWTAuth\JWTAuth::getToken();
-        }
-        
-        /**
-         * Get the raw Payload instance.
-         *
-         * @param mixed $token
-         * @return \Tymon\JWTAuth\Payload 
-         * @static 
-         */ 
-        public static function getPayload($token = false)
-        {
-            return \Tymon\JWTAuth\JWTAuth::getPayload($token);
         }
         
         /**
          * Parse the token from the request.
          *
-         * @param string $query
-         * @return \JWTAuth 
-         * @static 
-         */ 
-        public static function parseToken($method = 'bearer', $header = 'authorization', $query = 'token')
-        {
-            return \Tymon\JWTAuth\JWTAuth::parseToken($method, $header, $query);
-        }
-        
-        /**
-         * Set the identifier.
-         *
-         * @param string $identifier
+         * @throws \Tymon\JWTAuth\Exceptions\JWTException
          * @return $this 
          * @static 
          */ 
-        public static function setIdentifier($identifier)
+        public static function parseToken()
         {
-            return \Tymon\JWTAuth\JWTAuth::setIdentifier($identifier);
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::parseToken();
         }
         
         /**
-         * Get the identifier.
+         * Get the raw Payload instance.
          *
-         * @return string 
+         * @return \Tymon\JWTAuth\Payload 
          * @static 
          */ 
-        public static function getIdentifier()
+        public static function getPayload()
         {
-            return \Tymon\JWTAuth\JWTAuth::getIdentifier();
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::getPayload();
+        }
+        
+        /**
+         * Alias for getPayload().
+         *
+         * @return \Tymon\JWTAuth\Payload 
+         * @static 
+         */ 
+        public static function payload()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::payload();
+        }
+        
+        /**
+         * Convenience method to get a claim value.
+         *
+         * @param string $claim
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getClaim($claim)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::getClaim($claim);
+        }
+        
+        /**
+         * Create a Payload instance.
+         *
+         * @param \Tymon\JWTAuth\Contracts\JWTSubject $subject
+         * @return \Tymon\JWTAuth\Payload 
+         * @static 
+         */ 
+        public static function makePayload($subject)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::makePayload($subject);
         }
         
         /**
          * Set the token.
          *
-         * @param string $token
+         * @param \Tymon\JWTAuth\Token|string $token
          * @return $this 
          * @static 
          */ 
         public static function setToken($token)
         {
+            //Method inherited from \Tymon\JWTAuth\JWT            
             return \Tymon\JWTAuth\JWTAuth::setToken($token);
+        }
+        
+        /**
+         * Unset the current token.
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function unsetToken()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::unsetToken();
         }
         
         /**
          * Set the request instance.
          *
-         * @param \Request $request
+         * @param \Illuminate\Http\Request $request
+         * @return $this 
          * @static 
          */ 
         public static function setRequest($request)
         {
+            //Method inherited from \Tymon\JWTAuth\JWT            
             return \Tymon\JWTAuth\JWTAuth::setRequest($request);
         }
         
         /**
-         * Get the JWTManager instance.
+         * Get the Manager instance.
          *
-         * @return \Tymon\JWTAuth\JWTManager 
+         * @return \Tymon\JWTAuth\Manager 
          * @static 
          */ 
         public static function manager()
         {
+            //Method inherited from \Tymon\JWTAuth\JWT            
             return \Tymon\JWTAuth\JWTAuth::manager();
+        }
+        
+        /**
+         * Get the Parser instance.
+         *
+         * @return \Tymon\JWTAuth\Http\Parser\Parser 
+         * @static 
+         */ 
+        public static function parser()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::parser();
+        }
+        
+        /**
+         * Get the Payload Factory.
+         *
+         * @return \Tymon\JWTAuth\Factory 
+         * @static 
+         */ 
+        public static function factory()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::factory();
+        }
+        
+        /**
+         * Get the Blacklist.
+         *
+         * @return \Tymon\JWTAuth\Blacklist 
+         * @static 
+         */ 
+        public static function blacklist()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::blacklist();
+        }
+        
+        /**
+         * Set the custom claims.
+         *
+         * @param array $customClaims
+         * @return $this 
+         * @static 
+         */ 
+        public static function customClaims($customClaims)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::customClaims($customClaims);
+        }
+        
+        /**
+         * Alias to set the custom claims.
+         *
+         * @param array $customClaims
+         * @return $this 
+         * @static 
+         */ 
+        public static function claims($customClaims)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::claims($customClaims);
+        }
+        
+        /**
+         * Get the custom claims.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCustomClaims()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::getCustomClaims();
         }
          
     }
@@ -13515,13 +13672,24 @@ namespace Tymon\JWTAuth\Facades {
         /**
          * Create the Payload instance.
          *
-         * @param array $customClaims
+         * @param bool $resetClaims
          * @return \Tymon\JWTAuth\Payload 
          * @static 
          */ 
-        public static function make($customClaims = array())
+        public static function make($resetClaims = false)
         {
-            return \Tymon\JWTAuth\PayloadFactory::make($customClaims);
+            return \Tymon\JWTAuth\Factory::make($resetClaims);
+        }
+        
+        /**
+         * Empty the claims collection.
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function emptyClaims()
+        {
+            return \Tymon\JWTAuth\Factory::emptyClaims();
         }
         
         /**
@@ -13533,7 +13701,7 @@ namespace Tymon\JWTAuth\Facades {
          */ 
         public static function addClaims($claims)
         {
-            return \Tymon\JWTAuth\PayloadFactory::addClaims($claims);
+            return \Tymon\JWTAuth\Factory::addClaims($claims);
         }
         
         /**
@@ -13546,66 +13714,46 @@ namespace Tymon\JWTAuth\Facades {
          */ 
         public static function addClaim($name, $value)
         {
-            return \Tymon\JWTAuth\PayloadFactory::addClaim($name, $value);
+            return \Tymon\JWTAuth\Factory::addClaim($name, $value);
         }
         
         /**
-         * Build out the Claim DTO's.
+         * Build and get the Claims Collection.
          *
-         * @return array 
+         * @return \Tymon\JWTAuth\Claims\Collection 
          * @static 
          */ 
-        public static function resolveClaims()
+        public static function buildClaimsCollection()
         {
-            return \Tymon\JWTAuth\PayloadFactory::resolveClaims();
+            return \Tymon\JWTAuth\Factory::buildClaimsCollection();
         }
         
         /**
-         * Set the Issuer (iss) claim.
+         * Get a Payload instance with a claims collection.
          *
-         * @return string 
+         * @param \Tymon\JWTAuth\Claims\Collection $claims
+         * @return \Tymon\JWTAuth\Payload 
          * @static 
          */ 
-        public static function iss()
+        public static function withClaims($claims)
         {
-            return \Tymon\JWTAuth\PayloadFactory::iss();
+            return \Tymon\JWTAuth\Factory::withClaims($claims);
         }
         
         /**
-         * Set the Issued At (iat) claim.
+         * Set the default claims to be added to the Payload.
          *
-         * @return int 
+         * @param array $claims
+         * @return $this 
          * @static 
          */ 
-        public static function iat()
+        public static function setDefaultClaims($claims)
         {
-            return \Tymon\JWTAuth\PayloadFactory::iat();
+            return \Tymon\JWTAuth\Factory::setDefaultClaims($claims);
         }
         
         /**
-         * Set the Expiration (exp) claim.
-         *
-         * @return int 
-         * @static 
-         */ 
-        public static function exp()
-        {
-            return \Tymon\JWTAuth\PayloadFactory::exp();
-        }
-        
-        /**
-         * Set the Not Before (nbf) claim.
-         *
-         * @return int 
-         * @static 
-         */ 
-        public static function nbf()
-        {
-            return \Tymon\JWTAuth\PayloadFactory::nbf();
-        }
-        
-        /**
-         * Set the token ttl (in minutes).
+         * Helper to set the ttl.
          *
          * @param int $ttl
          * @return $this 
@@ -13613,22 +13761,79 @@ namespace Tymon\JWTAuth\Facades {
          */ 
         public static function setTTL($ttl)
         {
-            return \Tymon\JWTAuth\PayloadFactory::setTTL($ttl);
+            return \Tymon\JWTAuth\Factory::setTTL($ttl);
         }
         
         /**
-         * Get the token ttl.
+         * Helper to get the ttl.
          *
          * @return int 
          * @static 
          */ 
         public static function getTTL()
         {
-            return \Tymon\JWTAuth\PayloadFactory::getTTL();
+            return \Tymon\JWTAuth\Factory::getTTL();
         }
         
         /**
-         * Set the refresh flow.
+         * Get the default claims.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getDefaultClaims()
+        {
+            return \Tymon\JWTAuth\Factory::getDefaultClaims();
+        }
+        
+        /**
+         * Get the PayloadValidator instance.
+         *
+         * @return \Tymon\JWTAuth\Validators\PayloadValidator 
+         * @static 
+         */ 
+        public static function validator()
+        {
+            return \Tymon\JWTAuth\Factory::validator();
+        }
+        
+        /**
+         * Set the custom claims.
+         *
+         * @param array $customClaims
+         * @return $this 
+         * @static 
+         */ 
+        public static function customClaims($customClaims)
+        {
+            return \Tymon\JWTAuth\Factory::customClaims($customClaims);
+        }
+        
+        /**
+         * Alias to set the custom claims.
+         *
+         * @param array $customClaims
+         * @return $this 
+         * @static 
+         */ 
+        public static function claims($customClaims)
+        {
+            return \Tymon\JWTAuth\Factory::claims($customClaims);
+        }
+        
+        /**
+         * Get the custom claims.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCustomClaims()
+        {
+            return \Tymon\JWTAuth\Factory::getCustomClaims();
+        }
+        
+        /**
+         * Set the refresh flow flag.
          *
          * @param bool $refreshFlow
          * @return $this 
@@ -13636,7 +13841,7 @@ namespace Tymon\JWTAuth\Facades {
          */ 
         public static function setRefreshFlow($refreshFlow = true)
         {
-            return \Tymon\JWTAuth\PayloadFactory::setRefreshFlow($refreshFlow);
+            return \Tymon\JWTAuth\Factory::setRefreshFlow($refreshFlow);
         }
          
     }
