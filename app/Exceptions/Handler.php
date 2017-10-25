@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeFlix\Exceptions;
+namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
@@ -88,5 +88,4 @@ class Handler extends ExceptionHandler
             $e->getHeaders()
         );
     }
-
 }

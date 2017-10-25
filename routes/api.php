@@ -13,16 +13,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
+RouteDingo::version('v1', function() {
+    RouteDingo::group(['namespace' => 'App\Http\Controllers\Api', 'as' => 'api'], function(){
 
+//        RouteDingo::post('/login', 'AuthController@authenticate');
 
-DingoRoute::version('v1', function() {
-    DingoRoute::group(['namespace' => 'CodeFlix\Http\Controllers\Api', 'as' => 'api'], function(){
-
-        DingoRoute::post('/login', 'AuthController@authenticate');
-
+        RouteDingo::post('/acess_token', 'AuthController@acessToken')
+        ->name('.acess_token');
     });
 });
+
+

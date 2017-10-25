@@ -1,9 +1,7 @@
 <?php
 
-namespace CodeFlix\Providers;
+namespace App\Providers;
 
-use CodeFlix\Repositories\UserRepository;
-use CodeFlix\Repositories\UserRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -25,7 +23,7 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(\CodeFlix\Repositories\ProdutoRepository::class, \CodeFlix\Repositories\ProdutoRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\ProdutoRepository::class, \App\Repositories\ProdutoRepositoryEloquent::class);
         //:end-bindings:
     }
 }

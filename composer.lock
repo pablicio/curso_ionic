@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "11c475d8799ba89d950870c0e19359b2",
-    "content-hash": "9b6125f552d174494abc8e05b5161a77",
+    "hash": "a97c813a3c5ffe95c6337253d7fbfe15",
+    "content-hash": "416705d3743b14824028f10ce6146a64",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -677,59 +677,6 @@
                 }
             ],
             "time": "2015-04-20 18:58:01"
-        },
-        {
-            "name": "jrean/laravel-user-verification",
-            "version": "v4.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jrean/laravel-user-verification.git",
-                "reference": "72e6412718350b9ffcdb7018a0195707b1e2c450"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jrean/laravel-user-verification/zipball/72e6412718350b9ffcdb7018a0195707b1e2c450",
-                "reference": "72e6412718350b9ffcdb7018a0195707b1e2c450",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "5.4.*",
-                "php": ">=5.6.4"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^1.12",
-                "fzaninotto/faker": "^1.6",
-                "mockery/mockery": "^0.9.5",
-                "phpunit/phpunit": "^5.5",
-                "satooshi/php-coveralls": "^1.0",
-                "sllh/php-cs-fixer-styleci-bridge": "^2.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Jrean\\UserVerification\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jean Ragouin",
-                    "email": "go@askjong.com"
-                }
-            ],
-            "description": "User Email Verification For Laravel 5.*",
-            "keywords": [
-                "email activation",
-                "email verification",
-                "framework",
-                "laravel",
-                "user activation",
-                "user verification"
-            ],
-            "time": "2017-03-27 14:14:57"
         },
         {
             "name": "laravel/framework",
@@ -2928,41 +2875,53 @@
         },
         {
             "name": "tymon/jwt-auth",
-            "version": "0.5.12",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tymondesigns/jwt-auth.git",
-                "reference": "614ee3410a1cc18ef13c8d5ffd491b5608afabd8"
+                "reference": "9f759fe9e3112e1de50920c05537d752780cf966"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/614ee3410a1cc18ef13c8d5ffd491b5608afabd8",
-                "reference": "614ee3410a1cc18ef13c8d5ffd491b5608afabd8",
+                "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/b17f57305e10211f82f3610ebfcf214e657ffed2",
+                "reference": "9f759fe9e3112e1de50920c05537d752780cf966",
                 "shasum": ""
             },
             "require": {
-                "illuminate/http": "~5.0",
-                "illuminate/support": "~5.0",
-                "namshi/jose": "^5.0 || ^7.0",
-                "nesbot/carbon": "~1.0",
-                "php": ">=5.4.0"
+                "illuminate/auth": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.*",
+                "illuminate/contracts": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.*",
+                "illuminate/http": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.*",
+                "illuminate/support": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.*",
+                "namshi/jose": "^7.0",
+                "nesbot/carbon": "^1.0",
+                "php": "^5.5.9 || ^7.0"
             },
             "require-dev": {
-                "illuminate/auth": "~5.0",
-                "illuminate/console": "~5.0",
-                "illuminate/database": "~5.0",
+                "cartalyst/sentinel": "2.0.*",
+                "illuminate/console": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.*",
+                "illuminate/database": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.*",
+                "illuminate/routing": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.*",
                 "mockery/mockery": "0.9.*",
-                "phpunit/phpunit": "4.*"
+                "phpunit/phpunit": "~4.8 || ~6.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "0.5-dev"
+                    "dev-develop": "1.0-dev"
+                },
+                "laravel": {
+                    "aliases": {
+                        "JWTAuth": "Tymon\\JWTAuth\\Facades\\JWTAuth",
+                        "JWTFactory": "Tymon\\JWTAuth\\Facades\\JWTFactory"
+                    },
+                    "providers": [
+                        "Tymon\\JWTAuth\\Providers\\LaravelServiceProvider"
+                    ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Tymon\\JWTAuth\\": "src"
+                    "Tymon\\JWTAuth\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2973,21 +2932,20 @@
                 {
                     "name": "Sean Tymon",
                     "email": "tymon148@gmail.com",
-                    "homepage": "http://tymondesigns.com",
+                    "homepage": "https://tymon.xyz",
                     "role": "Developer"
                 }
             ],
-            "description": "JSON Web Token Authentication for Laravel 4 and 5",
+            "description": "JSON Web Token Authentication for Laravel and Lumen",
             "homepage": "https://github.com/tymondesigns/jwt-auth",
             "keywords": [
                 "Authentication",
                 "JSON Web Token",
                 "auth",
                 "jwt",
-                "laravel",
-                "tymon"
+                "laravel"
             ],
-            "time": "2017-06-07 21:32:02"
+            "time": "2017-10-23 09:17:55"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -4375,7 +4333,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "dingo/api": 15
+        "dingo/api": 15,
+        "tymon/jwt-auth": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

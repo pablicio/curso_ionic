@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.36 on 2017-10-25.
+ * Generated for Laravel 5.4.36 on 2017-10-24.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1304,7 +1304,7 @@ namespace Illuminate\Support\Facades {
         public static function handle($input, $output = null)
         {
             //Method inherited from \Illuminate\Foundation\Console\Kernel            
-            return \CodeFlix\Console\Kernel::handle($input, $output);
+            return \App\Console\Kernel::handle($input, $output);
         }
         
         /**
@@ -1318,7 +1318,7 @@ namespace Illuminate\Support\Facades {
         public static function terminate($input, $status)
         {
             //Method inherited from \Illuminate\Foundation\Console\Kernel            
-            \CodeFlix\Console\Kernel::terminate($input, $status);
+            \App\Console\Kernel::terminate($input, $status);
         }
         
         /**
@@ -1332,7 +1332,7 @@ namespace Illuminate\Support\Facades {
         public static function command($signature, $callback)
         {
             //Method inherited from \Illuminate\Foundation\Console\Kernel            
-            return \CodeFlix\Console\Kernel::command($signature, $callback);
+            return \App\Console\Kernel::command($signature, $callback);
         }
         
         /**
@@ -1345,7 +1345,7 @@ namespace Illuminate\Support\Facades {
         public static function registerCommand($command)
         {
             //Method inherited from \Illuminate\Foundation\Console\Kernel            
-            \CodeFlix\Console\Kernel::registerCommand($command);
+            \App\Console\Kernel::registerCommand($command);
         }
         
         /**
@@ -1360,7 +1360,7 @@ namespace Illuminate\Support\Facades {
         public static function call($command, $parameters = array(), $outputBuffer = null)
         {
             //Method inherited from \Illuminate\Foundation\Console\Kernel            
-            return \CodeFlix\Console\Kernel::call($command, $parameters, $outputBuffer);
+            return \App\Console\Kernel::call($command, $parameters, $outputBuffer);
         }
         
         /**
@@ -1374,7 +1374,7 @@ namespace Illuminate\Support\Facades {
         public static function queue($command, $parameters = array())
         {
             //Method inherited from \Illuminate\Foundation\Console\Kernel            
-            return \CodeFlix\Console\Kernel::queue($command, $parameters);
+            return \App\Console\Kernel::queue($command, $parameters);
         }
         
         /**
@@ -1386,7 +1386,7 @@ namespace Illuminate\Support\Facades {
         public static function all()
         {
             //Method inherited from \Illuminate\Foundation\Console\Kernel            
-            return \CodeFlix\Console\Kernel::all();
+            return \App\Console\Kernel::all();
         }
         
         /**
@@ -1398,7 +1398,7 @@ namespace Illuminate\Support\Facades {
         public static function output()
         {
             //Method inherited from \Illuminate\Foundation\Console\Kernel            
-            return \CodeFlix\Console\Kernel::output();
+            return \App\Console\Kernel::output();
         }
         
         /**
@@ -1410,7 +1410,7 @@ namespace Illuminate\Support\Facades {
         public static function bootstrap()
         {
             //Method inherited from \Illuminate\Foundation\Console\Kernel            
-            \CodeFlix\Console\Kernel::bootstrap();
+            \App\Console\Kernel::bootstrap();
         }
         
         /**
@@ -1423,7 +1423,7 @@ namespace Illuminate\Support\Facades {
         public static function setArtisan($artisan)
         {
             //Method inherited from \Illuminate\Foundation\Console\Kernel            
-            \CodeFlix\Console\Kernel::setArtisan($artisan);
+            \App\Console\Kernel::setArtisan($artisan);
         }
          
     }
@@ -1581,7 +1581,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the currently authenticated user.
          *
-         * @return \CodeFlix\Entities\User|null 
+         * @return \App\User|null 
          * @static 
          */ 
         public static function user()
@@ -1616,7 +1616,7 @@ namespace Illuminate\Support\Facades {
          * Log the given user ID into the application without sessions or cookies.
          *
          * @param mixed $id
-         * @return \CodeFlix\Entities\User|false 
+         * @return \App\User|false 
          * @static 
          */ 
         public static function onceUsingId($id)
@@ -1680,7 +1680,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param mixed $id
          * @param bool $remember
-         * @return \CodeFlix\Entities\User|false 
+         * @return \App\User|false 
          * @static 
          */ 
         public static function loginUsingId($id, $remember = false)
@@ -1727,7 +1727,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the last user we attempted to authenticate.
          *
-         * @return \CodeFlix\Entities\User 
+         * @return \App\User 
          * @static 
          */ 
         public static function getLastAttempted()
@@ -1852,7 +1852,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Return the currently cached user.
          *
-         * @return \CodeFlix\Entities\User|null 
+         * @return \App\User|null 
          * @static 
          */ 
         public static function getUser()
@@ -1898,7 +1898,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Determine if the current user is authenticated.
          *
-         * @return \CodeFlix\Entities\User 
+         * @return \App\User 
          * @throws \Illuminate\Auth\AuthenticationException
          * @static 
          */ 
@@ -12591,89 +12591,6 @@ namespace Collective\Html {
  
 }
 
-namespace Jrean\UserVerification\Facades { 
-
-    class UserVerification {
-        
-        /**
-         * Generate and save a verification token for the given user.
-         *
-         * @param \Illuminate\Contracts\Auth\Authenticatable $user
-         * @return bool 
-         * @static 
-         */ 
-        public static function generate($user)
-        {
-            return \Jrean\UserVerification\UserVerification::generate($user);
-        }
-        
-        /**
-         * Send by e-mail a link containing the verification token.
-         *
-         * @param \Illuminate\Contracts\Auth\Authenticatable $user
-         * @param string $subject
-         * @param string $from
-         * @param string $name
-         * @return void 
-         * @throws \Jrean\UserVerification\Exceptions\ModelNotCompliantException
-         * @static 
-         */ 
-        public static function send($user, $subject = null, $from = null, $name = null)
-        {
-            \Jrean\UserVerification\UserVerification::send($user, $subject, $from, $name);
-        }
-        
-        /**
-         * Queue and send by e-mail a link containing the verification token.
-         *
-         * @param \Illuminate\Contracts\Auth\Authenticatable $user
-         * @param string $subject
-         * @param string $from
-         * @param string $name
-         * @return void 
-         * @throws \Jrean\UserVerification\Exceptions\ModelNotCompliantException
-         * @static 
-         */ 
-        public static function sendQueue($user, $subject = null, $from = null, $name = null)
-        {
-            \Jrean\UserVerification\UserVerification::sendQueue($user, $subject, $from, $name);
-        }
-        
-        /**
-         * Send later by e-mail a link containing the verification token.
-         *
-         * @param \DateTime $delay
-         * @param \Illuminate\Contracts\Auth\Authenticatable $user
-         * @param string $subject
-         * @param string $from
-         * @param string $name
-         * @return void 
-         * @throws \Jrean\UserVerification\Exceptions\ModelNotCompliantException
-         * @static 
-         */ 
-        public static function sendLater($delay, $user, $subject = null, $from = null, $name = null)
-        {
-            \Jrean\UserVerification\UserVerification::sendLater($delay, $user, $subject, $from, $name);
-        }
-        
-        /**
-         * Process the user verification for the given e-mail and token.
-         *
-         * @param string $email
-         * @param string $token
-         * @param string $userTable
-         * @return void 
-         * @static 
-         */ 
-        public static function process($email, $token, $userTable)
-        {
-            \Jrean\UserVerification\UserVerification::process($email, $token, $userTable);
-        }
-         
-    }
- 
-}
-
 namespace Dingo\Api\Facade { 
 
     class API {
@@ -15819,11 +15736,9 @@ namespace  {
 
     class Html extends \Collective\Html\HtmlFacade {}
 
-    class UserVerification extends \Jrean\UserVerification\Facades\UserVerification {}
+    class RouteApi extends \Dingo\Api\Facade\API {}
 
-    class DingoApi extends \Dingo\Api\Facade\API {}
-
-    class DingoRoute extends \Dingo\Api\Facade\Route {}
+    class RouteDingo extends \Dingo\Api\Facade\Route {}
 
     class JWTAuth extends \Tymon\JWTAuth\Facades\JWTAuth {}
 

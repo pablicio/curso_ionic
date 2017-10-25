@@ -1,28 +1,52 @@
-<?php namespace CodeFlix\Http\Controllers\Api;
+<?php
 
+namespace App\Http\Controllers\Api;
+
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use CodeFlix\Http\Controllers\Controller;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Http\Controllers\Controller;
+
 
 class AuthController extends Controller
 {
-    public function authenticate(Request $request)
+    use AuthenticatesUsers;
+
+    public function acessToken(Request $request)
     {
-        // grab credentials from the request
-        $credentials = $request->only('email', 'password');
+        $this->validateLogin($request);
 
-        try {
-            // attempt to verify the credentials and create a token for the user
-            if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'Errado, Suma daqui ou ajeite essa porra!!'], 401);
-            }
-        } catch (JWTException $e) {
-            // something went wrong whilst attempting to encode the token
-            return response()->json(['error' => 'could_not_create_token'], 500);
+        $credentials = $this->credentials($request);
+
+        if($token = \Auth::guard('api')->attempt($credentials)){
+
+            return $this->sendLoginResponse($request, $token);
         }
+        return $this->sendFailedLoginResponse($request);
+    }
 
-        // all good so return the token
-        return response()->json(compact('token'));
+    public function refreshToken(Request $request)
+    {
+        $token = \Auth::guard('api')->refresh();
+        return $this->sendLoginResponse($request, $token);
+    }
+
+    protected function sendLoginResponse(Request $request, $token)
+    {
+        return response()->json([
+            'token' => $token
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        \Auth::guard('api')->logout();
+        return response()->json([],204);
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        return response()->json([
+            'error' => \Lang::get('auth.failed')
+        ],400);
     }
 }

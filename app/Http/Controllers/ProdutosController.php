@@ -1,16 +1,15 @@
 <?php
 
-namespace CodeFlix\Http\Controllers;
+namespace App\Http\Controllers;
 
 
-use CodeFlix\Entities\Produto;
-use CodeFlix\Http\Requests\ProdutoCreateRequest;
-use CodeFlix\Http\Requests\ProdutoUpdateRequest;
-use CodeFlix\Repositories\ProdutoRepository;
+
+use App\Entities\Produto;
+use App\Repositories\ProdutoRepository;
 use Illuminate\Http\Request;
 
 
-class ProdutoController extends Controller
+class ProdutosController extends Controller
 {
 
     /**

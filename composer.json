@@ -8,13 +8,13 @@
         "php": ">=5.6.4",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "filp/whoops": "^2.1",
-        "prettus/l5-repository": "^2.6",
         "laravelcollective/html": "^5.4.0",
-        "jrean/laravel-user-verification": "4.1.2",
+        "prettus/l5-repository": "^2.6",
         "barryvdh/laravel-ide-helper": "^2.4",
+        "filp/whoops": "^2.1",
         "dingo/api": "2.0.0-alpha1",
-        "tymon/jwt-auth": "0.5.*"
+        "tymon/jwt-auth": "dev-develop#9f759fe9e3112e1de50920c05537d752780cf966"
+
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -26,7 +26,7 @@
             "database"
         ],
         "psr-4": {
-            "CodeFlix\\": "app/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {

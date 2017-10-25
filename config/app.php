@@ -138,7 +138,7 @@ return [
     'providers' => [
 
         /*
-         * Laravel Framework Service Providers de terceiros...
+         * Laravel Framework Service Providers...
          */
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
@@ -162,12 +162,11 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Jrean\UserVerification\UserVerificationServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -175,14 +174,14 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
-         * Providers de minha apliocação...
+         * Application Service Providers...
          */
-        CodeFlix\Providers\AppServiceProvider::class,
-        CodeFlix\Providers\AuthServiceProvider::class,
-        // CodeFlix\Providers\BroadcastServiceProvider::class,
-        CodeFlix\Providers\EventServiceProvider::class,
-        CodeFlix\Providers\RouteServiceProvider::class,
-        \CodeFlix\Providers\RepositoryServiceProvider::class
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
+        \App\Providers\RepositoryServiceProvider::class
 
     ],
 
@@ -234,11 +233,11 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
-        'DingoApi' => Dingo\Api\Facade\API::class,
-        'DingoRoute' => Dingo\Api\Facade\Route::class,
+        'RouteApi' => Dingo\Api\Facade\API::class,
+        'RouteDingo' => Dingo\Api\Facade\Route::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+
     ],
 
 ];
