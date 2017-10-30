@@ -1,0 +1,51 @@
+<ion-content padding>
+
+    <ion-grid>
+
+        <ion-row justify-content-center>
+
+            <ion-col col-sm-auto col-md-6>
+
+                <ion-card color="dark">
+
+                    <ion-card-header>
+                        <img src="assets/imgs/logo.png" style="width: 100%; height: 200px">
+                    </ion-card-header>
+
+                    <ion-card-content>
+
+                        <ion-card-title>
+                            Página de Login
+                        </ion-card-title>
+                        <form (submit)="login()">
+                            <ion-item>
+                                <ion-input
+                                        type="text"
+                                        name="email"
+                                        placeholder="Email"
+                                        [(ngModel)]="email"
+                                >
+
+                                </ion-input>
+                            </ion-item>
+                            {{ email }}
+
+                            <ion-item>
+                                <ion-input type="password" name="password" placeholder="Senha" [(ngModel)]="password"></ion-input>
+                            </ion-item>
+
+                            <button ion-button type="submit" block color="light">Login</button>
+
+                        </form>
+
+                    </ion-card-content>
+
+                </ion-card>
+
+            </ion-col>
+
+        </ion-row>
+
+    </ion-grid>
+
+</ion-content>

@@ -8,18 +8,24 @@ import {ListPage} from '../pages/list/list';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-import {TesteComponent} from "../components/teste/teste";
+import {LoginPage} from "../pages/login/login";
+import {HttpModule} from "@angular/http";
+import {JwtCliente} from "../providers/jwt-cliente";
+import {IonicStorageModule} from "@ionic/storage";
 
 @NgModule({
     declarations: [
         MyApp,
         HomePage,
         ListPage,
-        TesteComponent
-
+        LoginPage
     ],
     imports: [
+        HttpModule,
         BrowserModule,
+        IonicStorageModule.forRoot({
+            driverOrder: ['localstorage']
+        }),
         IonicModule.forRoot(MyApp),
     ],
     bootstrap: [IonicApp],
@@ -27,11 +33,12 @@ import {TesteComponent} from "../components/teste/teste";
         MyApp,
         HomePage,
         ListPage,
-        TesteComponent
+        LoginPage
     ],
     providers: [
         StatusBar,
         SplashScreen,
+        JwtCliente,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })

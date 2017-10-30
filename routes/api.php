@@ -18,12 +18,12 @@ RouteDingo::version('v1', function () {
     RouteDingo::group(['namespace' => 'App\Http\Controllers\Api', 'as' => 'api'], function () {
 
         //POSSO ENVIAR ATÉ 10 REQUISIÇÕES POR MINUTO PARA ESTE MIDDLEWARE
-        RouteDingo::post('/acess_token', [
+        RouteDingo::post('/access_token', [
             'uses' => 'AuthController@acessToken',
             'middleware' => 'api.throttle',
             'limit' => 10,
             'expires' => 1
-        ])->name('.acess_token');
+        ])->name('.access_token');
 
         //POSSO DAR REFRESH NO MEU TOKEN
         RouteDingo::post('/refresh_token', [
