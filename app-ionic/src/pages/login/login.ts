@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from "ionic-angular";
+import {IonicPage, MenuController, NavController, NavParams, ToastController} from "ionic-angular";
 import 'rxjs/add/operator/toPromise'
 import {Auth} from "../../providers/auth";
+import {HomePage} from "../home/home";
+import {Teste} from "../../components/teste/teste";
 
 
 /**
@@ -27,25 +29,42 @@ export class LoginPage {
 
 
     constructor(public navCtrl: NavController,
+                public menuCtrl: MenuController,
                 public navParams: NavParams,
+                public toast: ToastController,
                 private auth: Auth) {
+
+        this.menuCtrl.enable(false);
     }
 
     login() {
-
         this.auth.login(this.user)
             .then(() => {
-                //redirecionar
+
+                this.afterLogin()
+
+            })
+            .catch(() => {
+                let toast = this.toast.create({
+                    message: 'Credenciais inválidas!',
+                    duration: 2000,
+                    position: 'top',
+                    cssClass: 'toast-login-error'
+                })
+
+                toast.present();
             });
-        // let dataObj = {
-        //     email: this.email,
-        //     password: this.password
-        // }
+    }
 
-        // this.jwtCliente.acessToken(dataObj)
-        //     .then((token) => {
-        //         console.log(token)
-        //     });
+    irHome(){
+        this.navCtrl.push("Teste",{
+            id: 10,
+            name: "Thiago Pablício"
+        });
+    }
 
+    afterLogin() {
+        this.menuCtrl.enable(true);
+        this.navCtrl.push(HomePage);
     }
 }

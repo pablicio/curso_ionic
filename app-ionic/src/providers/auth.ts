@@ -28,11 +28,20 @@ export class Auth {
             if (this._user) {
                 resolve(this._user)
             }
-            this.jwtCliente.getPayload().then((user) => {
-                this._user = user;
+            this.jwtCliente.getPayload().then((payload) => {
+
+                if (payload){
+                    this._user = payload;
+                }
 
                 resolve(this._user);
             });
+        });
+    }
+
+    check(): Promise<boolean> {
+        return this.user().then(user => {
+            return user !== null;
         });
     }
 
