@@ -23,7 +23,7 @@
                                         type="text"
                                         name="email"
                                         placeholder="Email"
-                                        [(ngModel)]="email"
+                                        [(ngModel)]="user.email"
                                 >
 
                                 </ion-input>
@@ -31,7 +31,7 @@
                             {{ email }}
 
                             <ion-item>
-                                <ion-input type="password" name="password" placeholder="Senha" [(ngModel)]="password"></ion-input>
+                                <ion-input type="password" name="password" placeholder="Senha" [(ngModel)]="user.password"></ion-input>
                             </ion-item>
 
                             <button ion-button type="submit" block color="light">Login</button>

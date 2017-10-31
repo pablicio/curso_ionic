@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {JwtCredentials} from "../models/jwt-credentials";
 import {Storage} from "@ionic/storage";
+import {JwtHelper} from "angular2-jwt";
 
 /*
   Generated class for the JwtCliente provider.
@@ -14,14 +15,22 @@ import {Storage} from "@ionic/storage";
 export class JwtCliente {
 
     private _token = null;
+    private _payload = null;
 
-    constructor(public http: Http, public storage: Storage) {
+    constructor(public http: Http,
+                public storage: Storage,
+                public jwtHelper: JwtHelper) {
 
-        this.getToken().then((token) => {
-            console.log(token)
+        this.getToken();
+
+        this.getPayload().then((payload) => {
+
+            console.log(payload)
+
         });
 
     }
+
 
     getToken(): Promise<string> {
 
@@ -43,6 +52,29 @@ export class JwtCliente {
     }
 
 
+    getPayload(): Promise<Object> {
+
+        return new Promise((resolve) => {
+
+            if (this._payload) {
+
+                resolve(this._payload)
+
+            }
+
+            this.getToken().then((token) => {
+
+                if(token){
+
+                    this._payload = this.jwtHelper.decodeToken(token);
+
+                }
+
+                resolve(this._payload);
+            })
+        })
+    }
+
 
     acessToken(jwtCredentials: JwtCredentials): Promise<string> {
 
@@ -60,6 +92,29 @@ export class JwtCliente {
                 return token;
             })
     }
+
+    revokeToken(): Promise<null> {
+
+        let headers = new Headers();
+
+        headers.set('Authorization', `Bearer ${this._token}`);
+
+        let requestOptions = new RequestOptions({headers});
+
+        return this.http.post(`http://localhost:8000/api/logout`, {}, requestOptions)
+            .toPromise()
+            .then((response: Response) => {
+                this._token = null;
+
+                this._payload = null;
+
+                this.storage.clear();
+
+                return null;
+            })
+    }
+
+
 
 }
 
