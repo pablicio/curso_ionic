@@ -16,7 +16,7 @@ import {Http} from "@angular/http";
 
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public authHttp: Http) {
+  constructor(public navCtrl: NavController, public authHttp: AuthHttp) {
 
   }
 

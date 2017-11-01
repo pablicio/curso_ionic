@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {JwtCliente} from "./jwt-cliente";
 import {JwtPayload} from "../models/jwt-payload";
+import {Facebook, FacebookLoginResponse} from "@ionic-native/facebook";
 
 /*
   Generated class for the Auth provider.
@@ -16,21 +17,21 @@ export class Auth {
 
     private _user = null;
 
-    constructor(public jwtCliente: JwtCliente) {
+    constructor(public jwtCliente: JwtCliente, public fb: Facebook) {
 
-        this.user().then((user) =>{
+        this.user().then((user) => {
             console.log(user)
         })
     }
 
-    user(): Promise <Object> {
+    user(): Promise<Object> {
         return new Promise((resolve) => {
             if (this._user) {
                 resolve(this._user)
             }
             this.jwtCliente.getPayload().then((payload) => {
 
-                if (payload){
+                if (payload) {
                     this._user = payload;
                 }
 
@@ -45,7 +46,7 @@ export class Auth {
         });
     }
 
-    login({email, password}) : Promise<Object>{
+    login({email, password}): Promise<Object> {
         return this.jwtCliente.acessToken({email, password})
             .then(() => {
                 return this.user()
@@ -55,7 +56,14 @@ export class Auth {
             });
     }
 
-    logout():Promise<any>{
+    loginFacebook() {
+        this.fb.login(['email'])
+            .then((response: FacebookLoginResponse) => {
+                console.log(response)
+            })
+    }
+
+    logout(): Promise<any> {
         return this.jwtCliente.revokeToken()
             .then(() => {
                 this._user = null;
