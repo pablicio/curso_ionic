@@ -12,6 +12,7 @@ declare var ENV: Env;
 export class JwtCliente {
 
     private _token = null;
+
     private _payload = null;
 
     constructor(public authHttp: AuthHttp,
@@ -90,13 +91,13 @@ export class JwtCliente {
             })
     }
 
-    revokeToken(): Promise<null> {
+    setToken(token:string){
+        this._token = token;
 
-        // let headers = new Headers();
-        //
-        // headers.set('Authorization', `Bearer ${this._token}`);
-        //
-        // let requestOptions = new RequestOptions({headers});
+        this.storage.set(ENV.TOKEN_NAME, this._token);
+    }
+
+    revokeToken(): Promise<null> {
 
         return this.authHttp.post(`${ENV.API_URL}/logout`, {})
             .toPromise()

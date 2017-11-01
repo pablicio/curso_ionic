@@ -40,9 +40,9 @@ RouteDingo::version('v1', function () {
         ],
             function () {
 
-            RouteDingo::post('/logout','AuthController@logout');
+                RouteDingo::post('/logout', 'AuthController@logout');
 
-                RouteDingo::get('/teste', function(){
+                RouteDingo::get('/teste', function () {
                     return 'oi estou logado';
                 });
             });
