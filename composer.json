@@ -14,7 +14,10 @@
         "filp/whoops": "^2.1",
         "dingo/api": "2.0.0-alpha1",
         "tymon/jwt-auth": "dev-develop#9f759fe9e3112e1de50920c05537d752780cf966",
-        "barryvdh/laravel-cors": "^0.10.0"
+        "barryvdh/laravel-cors": "^0.10.0",
+        "laravel/socialite": "3.0.6",
+        "kris/laravel-form-builder": "^1.13",
+        "patricktalmadge/bootstrapper": "^5.10"
 
     },
     "require-dev": {

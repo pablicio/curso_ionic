@@ -91,10 +91,12 @@ export class JwtCliente {
             })
     }
 
-    setToken(token:string){
+    setToken(token:string):string{
         this._token = token;
 
         this.storage.set(ENV.TOKEN_NAME, this._token);
+
+        return this._token;
     }
 
     revokeToken(): Promise<null> {

@@ -33,19 +33,20 @@ RouteDingo::version('v1', function () {
             'expires' => 1
         ])->name('.refresh_tokenrefresh_token');
 
+        RouteDingo::post('/register', 'RegisterUsersController@store');
+
         RouteDingo::group([
             'middleware' => ['api.throttle', 'api.auth'],
             'limit' => 100,
             'expires' => 3
-        ],
-            function () {
+        ], function () {
 
-                RouteDingo::post('/logout', 'AuthController@logout');
+            RouteDingo::post('/logout', 'AuthController@logout');
 
-                RouteDingo::get('/teste', function () {
-                    return 'oi estou logado';
-                });
+            RouteDingo::get('/teste', function () {
+                return 'oi estou logado';
             });
+        });
 
 
     });

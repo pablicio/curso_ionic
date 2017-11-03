@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin\Auth;
 
+use App\Entities\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Login Controller
+    | LoginPage Controller
     |--------------------------------------------------------------------------
     |
     | This controller handles authenticating users for the application and
@@ -25,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin/login';
 
     /**
      * Create a new controller instance.
@@ -35,5 +37,17 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function credentials(Request $request)
+    {
+        $data = $request->only($this->username(),'password');
+        $data['role'] = User::ROLE_ADMIN;
+        return $data;
+    }
+
+    public function showLoginForm()
+    {
+        return view('admin.auth.login');
     }
 }

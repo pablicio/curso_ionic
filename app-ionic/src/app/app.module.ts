@@ -19,6 +19,7 @@ import {Teste} from "../components/teste/teste";
 import {DefaultXHRBackend} from "../providers/default-xhr-backend";
 import {Redirector} from "../providers/redirector";
 import {Facebook} from "@ionic-native/facebook";
+import {UserResource} from "../providers/resources/user.resource";
 
 declare var ENV: Env;
 
@@ -66,7 +67,7 @@ console.log(ENV.API_URL);
         {
             provide: AuthHttp,
             deps: [Http, Storage],
-            useFactory(http, storage){
+            useFactory(http, storage) {
                 let authConfig = new AuthConfig({
                     headerPrefix: 'Bearer',
                     noJwtError: true,
@@ -77,6 +78,7 @@ console.log(ENV.API_URL);
             }
         },
         {provide: XHRBackend, useClass: DefaultXHRBackend},
+        UserResource,
     ]
 })
 export class AppModule {
