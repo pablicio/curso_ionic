@@ -45,6 +45,8 @@ RouteDingo::version('v1', function () {
 
             RouteDingo::patch('/user/settings','UsersController@updateSettings');
 
+            RouteDingo::get('/produtos','ProdutosController@index');
+
         });
 
 

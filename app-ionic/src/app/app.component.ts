@@ -10,6 +10,7 @@ import {Auth} from "../providers/auth";
 import {Redirector} from "../providers/redirector";
 
 import md5 from 'crypto-md5';
+import {ProdutosPage} from "../pages/produtos/produtos";
 
 @Component({
     templateUrl: 'app.html'
@@ -36,7 +37,8 @@ export class MyApp {
         // used for an example of ngFor and navigation
         this.pages = [
             {title: 'Home', component: HomePage},
-            {title: 'List', component: ListPage}
+            {title: 'List', component: ListPage},
+            // {title: 'Produtos', component: ProdutosPage}
         ];
 
     }

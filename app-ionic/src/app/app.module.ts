@@ -21,6 +21,8 @@ import {Redirector} from "../providers/redirector";
 import {Facebook} from "@ionic-native/facebook";
 import {UserResource} from "../providers/resources/user.resource";
 import {MySettingsPage} from "../pages/my-settings/my-settings";
+import {ProdutoResource} from "../providers/resources/produto.resource";
+import {ProdutosPage} from "../pages/produtos/produtos";
 
 declare var ENV: Env;
 
@@ -33,7 +35,8 @@ console.log(ENV.API_URL);
         ListPage,
         LoginPage,
         Teste,
-        MySettingsPage
+        MySettingsPage,
+        ProdutosPage
     ],
     imports: [
         HttpModule,
@@ -47,7 +50,7 @@ console.log(ENV.API_URL);
                 {component: HomePage, name: 'HomePage', segment: 'home'},
                 {component: Teste, name: 'Teste', segment: 'teste/:id/:name'},
                 {component: MySettingsPage, name: 'MySettingsPage', segment: 'configuracoes'},
-
+                {component: ProdutosPage, name: 'ProdutosPage', segment: 'produtos'},
             ]
         }),
     ],
@@ -58,7 +61,8 @@ console.log(ENV.API_URL);
         ListPage,
         LoginPage,
         Teste,
-        MySettingsPage
+        MySettingsPage,
+        ProdutosPage
     ],
     providers: [
         StatusBar,
@@ -68,6 +72,8 @@ console.log(ENV.API_URL);
         Auth,
         Redirector,
         Facebook,
+        UserResource,
+        ProdutoResource,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         {
             provide: AuthHttp,
@@ -83,7 +89,7 @@ console.log(ENV.API_URL);
             }
         },
         {provide: XHRBackend, useClass: DefaultXHRBackend},
-        UserResource,
+
     ]
 })
 export class AppModule {
