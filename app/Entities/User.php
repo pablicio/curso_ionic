@@ -10,6 +10,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject, TableInterface
 {
+    protected $table = 'users';
+
     use Notifiable;
     use SoftDeletes;
 

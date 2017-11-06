@@ -43,9 +43,8 @@ RouteDingo::version('v1', function () {
 
             RouteDingo::post('/logout', 'AuthController@logout');
 
-            RouteDingo::get('/teste', function () {
-                return 'oi estou logado';
-            });
+            RouteDingo::patch('/user/settings','UsersController@updateSettings');
+
         });
 
 

@@ -22,8 +22,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
                 null);
 
         $model = parent::create($attributes);
-//        \UserVerification::generate($model);
-//        \UserVerification::send($model,"Sua conta foi criada");
+
         return $model;
     }
 

@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Entities\User;
 use App\Http\Controllers\Controller;
-use App\Repositories\RegisterUserRepository;
-use App\Validators\RegisterUserValidator;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -14,12 +13,9 @@ class RegisterUsersController extends Controller
 {
     protected $repository;
 
-    protected $validator;
-
-    public function __construct(RegisterUserRepository $repository, RegisterUserValidator $validator)
+    public function __construct(UserRepository $repository)
     {
         $this->repository = $repository;
-        $this->validator = $validator;
     }
 
 
@@ -37,8 +33,6 @@ class RegisterUsersController extends Controller
             ->repository
             ->findByField('email', $userSocial->email)
             ->first();
-
-
 
         if (!$user) {
             User::unguard();

@@ -49,7 +49,7 @@ export class LoginPage {
                     message: 'Credenciais inválidas!',
                     duration: 2000,
                     position: 'top',
-                    cssClass: 'toast-login-error'
+                    cssClass: '.toast-reverse'
                 })
 
                 toast.present();
@@ -74,7 +74,7 @@ export class LoginPage {
                     message: 'Erro ao realizar login no facebook',
                     duration: 3000,
                     position: 'top',
-                    cssClass: '.toast-login-error'
+                    cssClass: '.toast-reverse'
                 });
                 toast.present();
             });

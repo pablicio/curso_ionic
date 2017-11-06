@@ -60,9 +60,17 @@ export class MyApp {
         this.nav.setRoot(page.component);
     }
 
+    goToMySettings(){
+        this.nav.setRoot('MySettingsPage');
+    }
+
     logout() {
         this.auth.logout().then(() => {
-
-        });
+            this.nav.setRoot('LoginPage');
+        }).catch(()=>{
+            this.nav.setRoot('LoginPage');
+        })
     }
+
+
 }
