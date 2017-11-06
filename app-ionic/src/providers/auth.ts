@@ -4,6 +4,7 @@ import {JwtCliente} from "./jwt-cliente";
 import {JwtPayload} from "../models/jwt-payload";
 import {Facebook, FacebookLoginResponse} from "@ionic-native/facebook";
 import {UserResource} from "./resources/user.resource";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 /*
   Generated class for the Auth provider.
@@ -17,6 +18,8 @@ import {UserResource} from "./resources/user.resource";
 export class Auth {
 
     private _user = null;
+    private _userSubject = new BehaviorSubject(null);
+
 
     constructor(public jwtCliente: JwtCliente,
                 public fb: Facebook,
@@ -25,6 +28,10 @@ export class Auth {
         this.user().then((user) => {
             console.log(user)
         })
+    }
+
+    userSubject():BehaviorSubject<Object> {
+        return this._userSubject;
     }
 
     user(): Promise<Object> {
@@ -36,6 +43,8 @@ export class Auth {
 
                 if (payload) {
                     this._user = payload;
+                    this._userSubject.next(this._user);
+
                 }
 
                 resolve(this._user);
@@ -76,6 +85,8 @@ export class Auth {
         return this.jwtCliente.revokeToken()
             .then(() => {
                 this._user = null;
+                this._userSubject.next(this._user);
+
             })
     }
 

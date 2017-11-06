@@ -1,12 +1,8 @@
-<?php
-
-namespace APp\Http\Controllers\Api;
-
-
+<?php namespace APp\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserSettingRequest;
 use App\Repositories\UserRepository;
-use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
@@ -20,19 +16,11 @@ class UsersController extends Controller
         $this->repository = $repository;
     }
 
-    public function updateSettings(Request $request)
+    public function updateSettings(UserSettingRequest $request)
     {
         $data = $request->only('password');
         $this->repository->update($data, $request->user('api')->id);
 
         return $request->user('api');
     }
-
-//    public function addCpf(AddCpfRequest $request)
-//    {
-//        $user = $this->repository->update([
-//            'cpf' => $request->input('cpf')
-//        ],$request->user('api')->id);
-//        return $user;
-//    }
 }
