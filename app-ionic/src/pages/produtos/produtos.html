@@ -19,11 +19,11 @@
 <ion-content padding>
     <ion-grid>
         <ion-row>
-            <ion-col col-sm-6 *ngFor="let produto of produtos | async">
+            <ion-col col-sm-6 *ngFor="let produto of produtos">
                 <ion-card text-center>
                     <ion-card-header>
                         <ion-item color="grey" text-center>
-                            <ion-card-title color="light">Produtoo <br/> {{ produto.nome }}</ion-card-title>
+                            <ion-card-title color="dark">Produto <br/> {{ produto.nome }}</ion-card-title>
                         </ion-item>
                     </ion-card-header>
                     <ion-card-content>

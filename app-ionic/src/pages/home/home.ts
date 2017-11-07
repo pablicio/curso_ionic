@@ -22,39 +22,6 @@ export class HomePage {
 
   ionViewDidLoad(){
 
-      this.authHttp.get(  'http://localhost:8000/api/teste')
-          .toPromise()
-          .then(()=>{
-              console.log('primeira')
-          })
-
-
-    // setInterval(() => {
-    //
-    //
-    //     this.authHttp.get(  'http://localhost:8000/api/teste')
-    //         .toPromise()
-    //         .then(()=>{
-    //             console.log('primeira')
-    //         })
-    //
-    //     this.authHttp.get(  'http://localhost:8000/api/teste')
-    //         .toPromise()
-    //         .then(()=>{
-    //             console.log('segunda')
-    //         })
-    //
-    //     this.authHttp.get(  'http://localhost:8000/api/teste')
-    //         .toPromise()
-    //         .then(()=>{
-    //             console.log('terceira')
-    //         })
-    //
-    //
-    // },60*1000+1);
-
-
-
   }
 
 }

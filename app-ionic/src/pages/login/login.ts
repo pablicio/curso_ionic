@@ -3,8 +3,6 @@ import {IonicPage, MenuController, NavController, NavParams, ToastController} fr
 import 'rxjs/add/operator/toPromise'
 import {Auth} from "../../providers/auth";
 import {HomePage} from "../home/home";
-import {Teste} from "../../components/teste/teste";
-
 
 /**
  * Generated class for the Login page.

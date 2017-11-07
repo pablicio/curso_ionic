@@ -15,7 +15,6 @@ import {IonicStorageModule, Storage} from "@ionic/storage";
 import {AuthConfig, AuthHttp, JwtHelper} from "angular2-jwt";
 import {Auth} from "../providers/auth";
 import {Env} from "../models/env";
-import {Teste} from "../components/teste/teste";
 import {DefaultXHRBackend} from "../providers/default-xhr-backend";
 import {Redirector} from "../providers/redirector";
 import {Facebook} from "@ionic-native/facebook";
@@ -26,15 +25,12 @@ import {ProdutosPage} from "../pages/produtos/produtos";
 
 declare var ENV: Env;
 
-console.log(ENV.API_URL);
-
 @NgModule({
     declarations: [
         MyApp,
         HomePage,
         ListPage,
         LoginPage,
-        Teste,
         MySettingsPage,
         ProdutosPage
     ],
@@ -48,7 +44,6 @@ console.log(ENV.API_URL);
             links: [
                 {component: LoginPage, name: 'LoginPage', segment: 'login'},
                 {component: HomePage, name: 'HomePage', segment: 'home'},
-                {component: Teste, name: 'Teste', segment: 'teste/:id/:name'},
                 {component: MySettingsPage, name: 'MySettingsPage', segment: 'configuracoes'},
                 {component: ProdutosPage, name: 'ProdutosPage', segment: 'produtos'},
             ]
@@ -60,7 +55,6 @@ console.log(ENV.API_URL);
         HomePage,
         ListPage,
         LoginPage,
-        Teste,
         MySettingsPage,
         ProdutosPage
     ],
@@ -89,7 +83,6 @@ console.log(ENV.API_URL);
             }
         },
         {provide: XHRBackend, useClass: DefaultXHRBackend},
-
     ]
 })
 export class AppModule {
